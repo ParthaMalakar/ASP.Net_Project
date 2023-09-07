@@ -1,0 +1,12 @@
+D:\webApi\WebApplication1\DAL\bin\Debug\DAL.dll.config
+D:\webApi\WebApplication1\DAL\bin\Debug\DAL.dll
+D:\webApi\WebApplication1\DAL\bin\Debug\DAL.pdb
+D:\webApi\WebApplication1\DAL\bin\Debug\EntityFramework.dll
+D:\webApi\WebApplication1\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\webApi\WebApplication1\DAL\bin\Debug\EntityFramework.xml
+D:\webApi\WebApplication1\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\webApi\WebApplication1\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\webApi\WebApplication1\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\webApi\WebApplication1\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\webApi\WebApplication1\DAL\obj\Debug\DAL.dll
+D:\webApi\WebApplication1\DAL\obj\Debug\DAL.pdb
