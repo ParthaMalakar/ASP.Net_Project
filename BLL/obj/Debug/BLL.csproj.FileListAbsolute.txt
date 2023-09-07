@@ -8,3 +8,5 @@ D:\webApi\WebApplication1\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
 D:\webApi\WebApplication1\BLL\obj\Debug\BLL.csproj.CopyComplete
 D:\webApi\WebApplication1\BLL\obj\Debug\BLL.dll
 D:\webApi\WebApplication1\BLL\obj\Debug\BLL.pdb
+D:\webApi\WebApplication1\BLL\bin\Debug\EntityFramework.dll
+D:\webApi\WebApplication1\BLL\bin\Debug\EntityFramework.xml
