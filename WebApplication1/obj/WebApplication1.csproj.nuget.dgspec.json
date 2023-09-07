@@ -4,6 +4,40 @@
     "D:\\webApi\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
+    "D:\\webApi\\WebApplication1\\BLL\\BLL.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\webApi\\WebApplication1\\BLL\\BLL.csproj",
+        "projectName": "BLL",
+        "projectPath": "D:\\webApi\\WebApplication1\\BLL\\BLL.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {
+              "D:\\webApi\\WebApplication1\\DAL\\DAL.csproj": {
+                "projectPath": "D:\\webApi\\WebApplication1\\DAL\\DAL.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
+    "D:\\webApi\\WebApplication1\\DAL\\DAL.csproj": {
+      "restore": {
+        "projectUniqueName": "D:\\webApi\\WebApplication1\\DAL\\DAL.csproj",
+        "projectName": "DAL",
+        "projectPath": "D:\\webApi\\WebApplication1\\DAL\\DAL.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
     "D:\\webApi\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -27,7 +61,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\webApi\\WebApplication1\\BLL\\BLL.csproj": {
+                "projectPath": "D:\\webApi\\WebApplication1\\BLL\\BLL.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -40,6 +78,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
