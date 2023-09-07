@@ -6,15 +6,9 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    public interface IEmpRepo<CLASS, ID ,RET>
+    public interface Imonth <CLASS, ID, RET>
     {
-        RET Update(CLASS obj);
-        CLASS Get3rdHighSelary();
         List<CLASS> GetAllEmp();
-        List<CLASS> GetMontlySalaryEmp();
-
-        CLASS GetSupervisor(ID id);
-
-
+       
     }
 }

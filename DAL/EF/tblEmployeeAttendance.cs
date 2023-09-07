@@ -15,9 +15,9 @@ namespace DAL.EF
     public partial class tblEmployeeAttendance
     {
         public string employeeId { get; set; }
-        public string attendanceDate { get; set; }
+        public DateTime attendanceDate { get; set; }
         public int isPresent { get; set; }
-        public Nullable<int> isAbsent { get; set; }
+        public int isAbsent { get; set; }
         public int isOffday { get; set; }
     }
 }
