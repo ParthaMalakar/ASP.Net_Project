@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EmployeeAttendenceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblEmployee">
+    <Key>
+      <PropertyRef Name="employeeId" />
+      <PropertyRef Name="employeeName" />
+      <PropertyRef Name="employeeCode" />
+      <PropertyRef Name="employeeSalary" />
+      <PropertyRef Name="supervisorId" />
+    </Key>
+    <Property Name="employeeId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="employeeName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="employeeCode" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="employeeSalary" Type="Int32" Nullable="false" />
+    <Property Name="supervisorId" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblEmployeeAttendance">
+    <Key>
+      <PropertyRef Name="employeeId" />
+      <PropertyRef Name="isPresent" />
+      <PropertyRef Name="isOffday" />
+    </Key>
+    <Property Name="employeeId" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="attendanceDate" Type="DateTime" Precision="0" />
+    <Property Name="isPresent" Type="Int32" Nullable="false" />
+    <Property Name="isAbsent" Type="Int32" />
+    <Property Name="isOffday" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="EmployeeAttendenceEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblEmployees" EntityType="Self.tblEmployee" />
+    <EntitySet Name="tblEmployeeAttendances" EntityType="Self.tblEmployeeAttendance" />
+  </EntityContainer>
+</Schema>

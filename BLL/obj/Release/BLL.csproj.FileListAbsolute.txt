@@ -1,0 +1,14 @@
+D:\webApi\WebApplication1\BLL\bin\Release\BLL.dll
+D:\webApi\WebApplication1\BLL\bin\Release\BLL.pdb
+D:\webApi\WebApplication1\BLL\bin\Release\AutoMapper.dll
+D:\webApi\WebApplication1\BLL\bin\Release\DAL.dll
+D:\webApi\WebApplication1\BLL\bin\Release\EntityFramework.dll
+D:\webApi\WebApplication1\BLL\bin\Release\DAL.pdb
+D:\webApi\WebApplication1\BLL\bin\Release\DAL.dll.config
+D:\webApi\WebApplication1\BLL\bin\Release\AutoMapper.xml
+D:\webApi\WebApplication1\BLL\bin\Release\EntityFramework.xml
+D:\webApi\WebApplication1\BLL\obj\Release\BLL.csproj.AssemblyReference.cache
+D:\webApi\WebApplication1\BLL\obj\Release\BLL.csproj.CoreCompileInputs.cache
+D:\webApi\WebApplication1\BLL\obj\Release\BLL.csproj.CopyComplete
+D:\webApi\WebApplication1\BLL\obj\Release\BLL.dll
+D:\webApi\WebApplication1\BLL\obj\Release\BLL.pdb

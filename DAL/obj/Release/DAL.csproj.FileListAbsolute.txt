@@ -1,0 +1,10 @@
+D:\webApi\WebApplication1\DAL\bin\Release\DAL.dll.config
+D:\webApi\WebApplication1\DAL\bin\Release\DAL.dll
+D:\webApi\WebApplication1\DAL\bin\Release\DAL.pdb
+D:\webApi\WebApplication1\DAL\bin\Release\EntityFramework.dll
+D:\webApi\WebApplication1\DAL\bin\Release\EntityFramework.xml
+D:\webApi\WebApplication1\DAL\obj\Release\DAL.csproj.AssemblyReference.cache
+D:\webApi\WebApplication1\DAL\obj\Release\DAL.csproj.CoreCompileInputs.cache
+D:\webApi\WebApplication1\DAL\obj\Release\DAL.csproj.CopyComplete
+D:\webApi\WebApplication1\DAL\obj\Release\DAL.dll
+D:\webApi\WebApplication1\DAL\obj\Release\DAL.pdb

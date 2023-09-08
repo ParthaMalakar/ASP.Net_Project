@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EmployeeAttendenceModelStoreContainer" CdmEntityContainer="EmployeeAttendenceEntities">
+    <EntitySetMapping Name="tblEmployees">
+      <EntityTypeMapping TypeName="EmployeeAttendenceModel.tblEmployee">
+        <MappingFragment StoreEntitySet="tblEmployee">
+          <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+          <ScalarProperty Name="employeeName" ColumnName="employeeName" />
+          <ScalarProperty Name="employeeCode" ColumnName="employeeCode" />
+          <ScalarProperty Name="employeeSalary" ColumnName="employeeSalary" />
+          <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblEmployeeAttendances">
+      <EntityTypeMapping TypeName="EmployeeAttendenceModel.tblEmployeeAttendance">
+        <MappingFragment StoreEntitySet="tblEmployeeAttendance">
+          <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+          <ScalarProperty Name="attendanceDate" ColumnName="attendanceDate" />
+          <ScalarProperty Name="isPresent" ColumnName="isPresent" />
+          <ScalarProperty Name="isAbsent" ColumnName="isAbsent" />
+          <ScalarProperty Name="isOffday" ColumnName="isOffday" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

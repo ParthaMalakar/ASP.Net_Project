@@ -13,7 +13,7 @@ namespace BLL.Services
 {
     public class CollectDataService
     {
-        public static void UPDATE(EmployeeDTO item)
+        public static string UPDATE(EmployeeDTO item)
         {
             
             tblEmployee AD = new tblEmployee()
@@ -25,7 +25,17 @@ namespace BLL.Services
                 employeeSalary = item.employeeSalary,
                 supervisorId = item.supervisorId,
             };
-            EmployeeRepo.Update(AD);
+           
+            if(EmployeeRepo.Exits(AD) )
+            {
+                return "Already Exits";
+            }
+            else
+            {
+                var data = EmployeeRepo.Update(AD);
+                return "updated";
+            }
+            
         }
         public static EmployeeDTO GETSAL()
         {

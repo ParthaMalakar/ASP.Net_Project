@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EmployeeAttendenceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EmployeeAttendence.dbo.tblEmployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblEmployee">
+          <Key>
+            <PropertyRef Name="employeeId" />
+            <PropertyRef Name="employeeName" />
+            <PropertyRef Name="employeeCode" />
+            <PropertyRef Name="employeeSalary" />
+            <PropertyRef Name="supervisorId" />
+          </Key>
+          <Property Name="employeeId" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="employeeName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="employeeCode" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="employeeSalary" Type="int" Nullable="false" />
+          <Property Name="supervisorId" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EmployeeAttendence.dbo.tblEmployeeAttendance' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblEmployeeAttendance">
+          <Key>
+            <PropertyRef Name="employeeId" />
+            <PropertyRef Name="isPresent" />
+            <PropertyRef Name="isOffday" />
+          </Key>
+          <Property Name="employeeId" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="attendanceDate" Type="date" />
+          <Property Name="isPresent" Type="int" Nullable="false" />
+          <Property Name="isAbsent" Type="int" />
+          <Property Name="isOffday" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="EmployeeAttendenceModelStoreContainer">
+          <EntitySet Name="tblEmployee" EntityType="Self.tblEmployee" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[tblEmployee].[employeeId] AS [employeeId], 
+[tblEmployee].[employeeName] AS [employeeName], 
+[tblEmployee].[employeeCode] AS [employeeCode], 
+[tblEmployee].[employeeSalary] AS [employeeSalary], 
+[tblEmployee].[supervisorId] AS [supervisorId]
+FROM [dbo].[tblEmployee] AS [tblEmployee]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblEmployeeAttendance" EntityType="Self.tblEmployeeAttendance" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[tblEmployeeAttendance].[employeeId] AS [employeeId], 
+[tblEmployeeAttendance].[attendanceDate] AS [attendanceDate], 
+[tblEmployeeAttendance].[isPresent] AS [isPresent], 
+[tblEmployeeAttendance].[isAbsent] AS [isAbsent], 
+[tblEmployeeAttendance].[isOffday] AS [isOffday]
+FROM [dbo].[tblEmployeeAttendance] AS [tblEmployeeAttendance]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EmployeeAttendenceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblEmployee">
+          <Key>
+            <PropertyRef Name="employeeId" />
+            <PropertyRef Name="employeeName" />
+            <PropertyRef Name="employeeCode" />
+            <PropertyRef Name="employeeSalary" />
+            <PropertyRef Name="supervisorId" />
+          </Key>
+          <Property Name="employeeId" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="employeeName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="employeeCode" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="employeeSalary" Type="Int32" Nullable="false" />
+          <Property Name="supervisorId" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEmployeeAttendance">
+          <Key>
+            <PropertyRef Name="employeeId" />
+            <PropertyRef Name="isPresent" />
+            <PropertyRef Name="isOffday" />
+          </Key>
+          <Property Name="employeeId" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="attendanceDate" Type="DateTime" Precision="0" />
+          <Property Name="isPresent" Type="Int32" Nullable="false" />
+          <Property Name="isAbsent" Type="Int32" />
+          <Property Name="isOffday" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="EmployeeAttendenceEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblEmployees" EntityType="Self.tblEmployee" />
+          <EntitySet Name="tblEmployeeAttendances" EntityType="Self.tblEmployeeAttendance" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EmployeeAttendenceModelStoreContainer" CdmEntityContainer="EmployeeAttendenceEntities1">
+          <EntitySetMapping Name="tblEmployees">
+            <EntityTypeMapping TypeName="EmployeeAttendenceModel.tblEmployee">
+              <MappingFragment StoreEntitySet="tblEmployee">
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+                <ScalarProperty Name="employeeName" ColumnName="employeeName" />
+                <ScalarProperty Name="employeeCode" ColumnName="employeeCode" />
+                <ScalarProperty Name="employeeSalary" ColumnName="employeeSalary" />
+                <ScalarProperty Name="supervisorId" ColumnName="supervisorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEmployeeAttendances">
+            <EntityTypeMapping TypeName="EmployeeAttendenceModel.tblEmployeeAttendance">
+              <MappingFragment StoreEntitySet="tblEmployeeAttendance">
+                <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+                <ScalarProperty Name="attendanceDate" ColumnName="attendanceDate" />
+                <ScalarProperty Name="isPresent" ColumnName="isPresent" />
+                <ScalarProperty Name="isAbsent" ColumnName="isAbsent" />
+                <ScalarProperty Name="isOffday" ColumnName="isOffday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

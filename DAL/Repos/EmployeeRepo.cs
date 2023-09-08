@@ -16,7 +16,7 @@ namespace DAL.Repos
       
         public static tblEmployee Get3rdHighSelary()
         {
-            var db = new EmployeeAttendenceEntities();
+            var db = new EmployeeAttendenceEntities1();
             var thirdSalary = db.tblEmployees
                         .Select(e => e.employeeSalary)
                         .Distinct()
@@ -31,7 +31,7 @@ namespace DAL.Repos
         public static List<MonthlyAttendanceReport> GetAllEmp()
         {
 
-            var db = new EmployeeAttendenceEntities();
+            var db = new EmployeeAttendenceEntities1();
             var monthlyReport = db.tblEmployeeAttendances
                 .Join(db.tblEmployees,
                     attendance => attendance.employeeId,
@@ -39,16 +39,18 @@ namespace DAL.Repos
                     (attendance, employee) => new MonthlyAttendanceReport
                     {
                         EmployeeName = employee.employeeName,
-                        MonthName = attendance.attendanceDate.ToString("MMMM"),
+                        MonthName = attendance.attendanceDate,
                         PayableSalary = employee.employeeSalary,
                         TotalPresent = attendance.isPresent == 1 ? 1 : 0,
                         TotalAbsent = attendance.isAbsent == 1 ? 1 : 0,
                         TotalOffday = attendance.isOffday == 1 ? 1 : 0
                     })
-                .GroupBy(r => new { r.EmployeeName, r.MonthName, r.PayableSalary })
+                .GroupBy(r => new { r.EmployeeName, r.MonthName, r.PayableSalary})
                 .Select(g => new MonthlyAttendanceReport
                 {
-
+                    g.Key.EmployeeName,
+                    g.Key.MonthName,
+                    g.Key.PayableSalary,
                     TotalPresent = g.Sum(r => r.TotalPresent),
                     TotalAbsent = g.Sum(r => r.TotalAbsent),
                     TotalOffday = g.Sum(r => r.TotalOffday)
@@ -60,7 +62,7 @@ namespace DAL.Repos
 
         public static List<tblEmployee> GetMontlySalaryEmp()
         {
-            var db = new EmployeeAttendenceEntities();
+            var db = new EmployeeAttendenceEntities1();
             var employeesWithNoAbsentRecord = (
                 from employee in db.tblEmployees
                 where !db.tblEmployeeAttendances.Any(absent => absent.employeeId == employee.employeeId && absent.isAbsent == 1)
@@ -73,29 +75,42 @@ namespace DAL.Repos
 
         }
 
-       
-
-        public static tblEmployee Update(tblEmployee obj)
+        public static bool Exits(tblEmployee obj)
         {
-            var db = new EmployeeAttendenceEntities();
+            var db = new EmployeeAttendenceEntities1();
+            var dbobbj = db.tblEmployees.Find(obj.employeeCode);
+            db.Entry(dbobbj).CurrentValues.SetValues(obj);
+            if (db.SaveChanges() > 0) return true;
+            return false;
+        }
+
+        public static bool Update(tblEmployee obj)
+        {
+            var db = new EmployeeAttendenceEntities1();
             var dbobbj = db.tblEmployees.Find(obj.employeeId);
             db.Entry(dbobbj).CurrentValues.SetValues(obj);
-            if (db.SaveChanges() > 0) return obj;
-            return null;
+            if (db.SaveChanges() > 0) return true;
+            return false;
         }
 
        public static string GetSupervisor(string id)
         {
-            var db = new EmployeeAttendenceEntities();
-            var dbobbj = db.tblEmployees.Find(id);
-            var owname = dbobbj.employeeName;
-            var dbobbj1 = db.tblEmployees.Find(dbobbj.supervisorId);
-            var owname1 = dbobbj.employeeName;
-            var dbobbj2 = db.tblEmployees.Find(dbobbj1.supervisorId);
-            var owname2 = dbobbj.employeeName;
-            var dbobbj3 = db.tblEmployees.Find(dbobbj2.supervisorId);
-            var owname3 = dbobbj.employeeName;
-            return owname +"-->" + owname1 + "-->"+ owname2 + "-->" + owname3;
+            var id2 = id;
+            var db = new EmployeeAttendenceEntities1();
+            
+            
+                var dbobbj = db.tblEmployees.Find(id);
+                var owname = dbobbj.employeeName;
+                var dbobbj1 = db.tblEmployees.Find(dbobbj.supervisorId);
+                var owname1 = dbobbj.employeeName;
+                var dbobbj2 = db.tblEmployees.Find(dbobbj1.supervisorId);
+                var owname2 = dbobbj.employeeName;
+                var dbobbj3 = db.tblEmployees.Find(dbobbj2.supervisorId);
+                var owname3 = dbobbj.employeeName;
+                return owname + "-->" + owname1 + "-->" + owname2 + "-->" + owname3;
+          
+           
+            
         }
     }
 }
