@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace BLL.DTOs
 {
-    internal class EmployeeAttendenceDTO
+    public class EmployeeAttendenceDTO
     {
+        public string employeeId { get; set; }
+        public DateTime attendanceDate { get; set; }
+        public int isPresent { get; set; }
+        public int isAbsent { get; set; }
+        public int isOffday { get; set; }
     }
 }

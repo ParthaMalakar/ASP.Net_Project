@@ -1,5 +1,6 @@
 ﻿using DAL.EF;
 using DAL.Interfaces;
+using DAL.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -9,17 +10,13 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    public class EmployeeRepo : IEmpRepo<tblEmployee, string, tblEmployee>
+    public class EmployeeRepo 
     {
-        EmployeeAttendenceEntities db;
-        internal EmployeeRepo()
-        {
-            db = new EmployeeAttendenceEntities();
-        }
-
+        
       
-        public tblEmployee Get3rdHighSelary()
+        public static tblEmployee Get3rdHighSelary()
         {
+            var db = new EmployeeAttendenceEntities();
             var thirdSalary = db.tblEmployees
                         .Select(e => e.employeeSalary)
                         .Distinct()
@@ -31,15 +28,39 @@ namespace DAL.Repos
 
         }
 
-        public List<tblEmployee> GetAllEmp()
+        public static List<MonthlyAttendanceReport> GetAllEmp()
         {
-           
-            throw new NotImplementedException();
+
+            var db = new EmployeeAttendenceEntities();
+            var monthlyReport = db.tblEmployeeAttendances
+                .Join(db.tblEmployees,
+                    attendance => attendance.employeeId,
+                    employee => employee.employeeId,
+                    (attendance, employee) => new MonthlyAttendanceReport
+                    {
+                        EmployeeName = employee.employeeName,
+                        MonthName = attendance.attendanceDate.ToString("MMMM"),
+                        PayableSalary = employee.employeeSalary,
+                        TotalPresent = attendance.isPresent == 1 ? 1 : 0,
+                        TotalAbsent = attendance.isAbsent == 1 ? 1 : 0,
+                        TotalOffday = attendance.isOffday == 1 ? 1 : 0
+                    })
+                .GroupBy(r => new { r.EmployeeName, r.MonthName, r.PayableSalary })
+                .Select(g => new MonthlyAttendanceReport
+                {
+
+                    TotalPresent = g.Sum(r => r.TotalPresent),
+                    TotalAbsent = g.Sum(r => r.TotalAbsent),
+                    TotalOffday = g.Sum(r => r.TotalOffday)
+                })
+                .ToList();
+            return monthlyReport;
 
         }
 
-        public List<tblEmployee> GetMontlySalaryEmp()
+        public static List<tblEmployee> GetMontlySalaryEmp()
         {
+            var db = new EmployeeAttendenceEntities();
             var employeesWithNoAbsentRecord = (
                 from employee in db.tblEmployees
                 where !db.tblEmployeeAttendances.Any(absent => absent.employeeId == employee.employeeId && absent.isAbsent == 1)
@@ -54,16 +75,18 @@ namespace DAL.Repos
 
        
 
-        public tblEmployee Update(tblEmployee obj)
+        public static tblEmployee Update(tblEmployee obj)
         {
+            var db = new EmployeeAttendenceEntities();
             var dbobbj = db.tblEmployees.Find(obj.employeeId);
             db.Entry(dbobbj).CurrentValues.SetValues(obj);
             if (db.SaveChanges() > 0) return obj;
             return null;
         }
 
-        string IEmpRepo<tblEmployee, string, tblEmployee>.GetSupervisor(string id)
+       public static string GetSupervisor(string id)
         {
+            var db = new EmployeeAttendenceEntities();
             var dbobbj = db.tblEmployees.Find(id);
             var owname = dbobbj.employeeName;
             var dbobbj1 = db.tblEmployees.Find(dbobbj.supervisorId);

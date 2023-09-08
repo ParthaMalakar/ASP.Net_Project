@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace BLL.DTOs
 {
-    internal class EmployeeDTO
+    public partial class EmployeeDTO
     {
+            public string employeeId { get; set; }
+            public string employeeName { get; set; }
+            public string employeeCode { get; set; }
+            public int employeeSalary { get; set; }
+            public string supervisorId { get; set; }
+        
     }
 }

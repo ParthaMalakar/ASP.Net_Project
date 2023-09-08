@@ -10,15 +10,12 @@ using System.Threading.Tasks;
 
 namespace DAL.Repos
 {
-    public class MonthlyReport : Imonth<MonthlyAttendanceReport, string, MonthlyAttendanceReport>
+    public class MonthlyReport 
     {
-        EmployeeAttendenceEntities db;
-        internal MonthlyReport()
+        
+        public static List<MonthlyAttendanceReport> GetAllEmp()
         {
-            db = new EmployeeAttendenceEntities();
-        }
-        public List<MonthlyAttendanceReport> GetAllEmp()
-        {
+           var db = new EmployeeAttendenceEntities();
             var monthlyReport = db.tblEmployeeAttendances
                 .Join(db.tblEmployees,
                     attendance => attendance.employeeId,
