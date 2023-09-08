@@ -13,7 +13,7 @@ namespace DAL.Interfaces
         List<CLASS> GetAllEmp();
         List<CLASS> GetMontlySalaryEmp();
 
-        CLASS GetSupervisor(ID id);
+        string GetSupervisor(ID id);
 
 
     }

@@ -52,10 +52,7 @@ namespace DAL.Repos
 
         }
 
-        public tblEmployee GetSupervisor(string id)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public tblEmployee Update(tblEmployee obj)
         {
@@ -63,6 +60,19 @@ namespace DAL.Repos
             db.Entry(dbobbj).CurrentValues.SetValues(obj);
             if (db.SaveChanges() > 0) return obj;
             return null;
+        }
+
+        string IEmpRepo<tblEmployee, string, tblEmployee>.GetSupervisor(string id)
+        {
+            var dbobbj = db.tblEmployees.Find(id);
+            var owname = dbobbj.employeeName;
+            var dbobbj1 = db.tblEmployees.Find(dbobbj.supervisorId);
+            var owname1 = dbobbj.employeeName;
+            var dbobbj2 = db.tblEmployees.Find(dbobbj1.supervisorId);
+            var owname2 = dbobbj.employeeName;
+            var dbobbj3 = db.tblEmployees.Find(dbobbj2.supervisorId);
+            var owname3 = dbobbj.employeeName;
+            return owname +"-->" + owname1 + "-->"+ owname2 + "-->" + owname3;
         }
     }
 }
